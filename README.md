@@ -1,2 +1,2 @@
 # NanoRCS
-NanoRCS: Multimodal genome-wide cfDNA sequencing and analysis
+Genome-wide Nanopore Rolling Circle Amplification (RCA)-enhanced Consensus Sequencing (NanoRCS) is a genome-wide cfDNA sequencing method based on a combination of rolling circle amplification and consensus calling of long-read Nanopore sequences. In this repository, analysis pipelines and scripts for figures generating are included related to the NanoRCS manuscript. There is a folder structure separating different parts of analyses, and a readme concerning each part of the analysis within each folder.
