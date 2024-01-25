@@ -1,0 +1,14 @@
+jobs: 100
+cluster: "sbatch --output=/path/to/{rule}_{wildcards}.out --error=/path/to/{rule}_{wildcards}.err --mem={resources.mem_mb} --time={resources.runtime} --cpus-per-task {resources.cpus} --gres=tmpspace:{resources.disk_mb} --parsable"
+cluster-status: "/path/to/slurm/status-sacct.sh" #  Use to handle timeout 
+use-conda: True
+use-singularity: True
+latency-wait: 240
+restart-times: 1
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+reason: True
+cluster-cancel: True
+show-failed-logs: True
+
