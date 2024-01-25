@@ -23,7 +23,7 @@ sns.set_style("whitegrid", {'axes.grid': False})
 
 if __name__ == '__main__':
     # Import dataframe
-    df = pd.read_csv("/Users/liting/00_projects/NanoRCS/10_figures/source_data/Fig2A.csv", index_col=[0,1])
+    df = pd.read_csv("./source_data/Fig2A.csv", index_col=[0,1])
     # Plotting snv error rate per sequencing and analysis method
     p1, ax = plt.subplots(figsize=(5, 4))
     p1 = sns.barplot(data=df,
