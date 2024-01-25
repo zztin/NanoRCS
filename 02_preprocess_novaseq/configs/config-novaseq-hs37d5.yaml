@@ -1,0 +1,23 @@
+out_dir:
+  "../output/processed_data/novaseq"
+input_path:
+  "../input/raw_novaseq_fastq"
+samples:
+  - OES01
+  - OES02
+  - OES03
+  - OES04
+  - OES05
+  - GCT01
+  - GCT02
+  - HC03
+# Format of samples are: {sample}_{lanes}_{R1,R2}_001.fastq.gz
+lanes: ["L001", "L002"]
+# Supply genome version
+genome:
+    "/YOUR/PATH/TO/GENOME.fasta"
+default-resources: True
+resources:
+  - runtime: 4h
+  - cpus: 8
+  - disk_mb: 60000

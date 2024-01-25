@@ -1,0 +1,14 @@
+name: hmmcopy
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - R
+    - python
+    - r-ichorcna
+    - bioconductor-hmmcopy
+    - bioconductor-iranges
+    - bioconductor-genomeinfodb
+    - bioconductor-genomicranges
+ 
