@@ -5,5 +5,5 @@ Illumina NovaSeq paired-end sequencing files are processed to produce mapped bam
 
 An example submission command: `snakemake --snakefile Snakemake --configfiles config-novaseq-hs37d5.yaml --profile slurm`
 
-Here, I used a command --profile slurm. The related snakemake profile could be found at top level folder: `NanoRCS/snakemake-profile`. More snakemake related documentations please be referred to [Snakemake Documentation](https://snakemake.readthedocs.io/en/stable/).
+Here, `--profile slurm` is used. The related snakemake profile could be found at top level folder: `NanoRCS/snakemake-profile`. More snakemake related documentations please be referred to [Snakemake Documentation](https://snakemake.readthedocs.io/en/stable/).
 
