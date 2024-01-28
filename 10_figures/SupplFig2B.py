@@ -23,16 +23,18 @@ sns.set_style("whitegrid", {'axes.grid': False})
 
 if __name__ == '__main__':
     # Load data base
-    df3 = pd.read_csv("./source_data/SupplFig2A_2.csv", index_col = 0)
+    df3 = pd.read_csv("./source_data/SupplFig2B.csv", index_col = 0)
     # Plotting
-    fig, ax = plt.subplots(figsize = (6,6))
+    fig, ax = plt.subplots(figsize = (5,5))
     sns.boxplot(x = 'q_score_threshold',
                 y = 'fraction_reads_above_threshold',
                 hue = 'method',
                 data = df3,
                 palette={"NANO": "#d8e6f6", "NOVA": "#d4d4d4", "NOVA-ecco":"#606680","RCS":"#60ba6c"},
                 ax = ax)
+#    plt.ylim(0.95, 1.005)
     plt.ylabel("Fraction of reads above SNV error rate")
-    plt.xlabel("SNV Error rate (Phred score, -log10(E)*10)")
-    plt.savefig("../output/output_figures/SupplFig2A_2.pdf")
+    plt.xlabel("SNV Error rate threshold (Q score)")
+    plt.tight_layout()
+    plt.savefig("../output/output_figures/SupplFig2B.pdf")
     plt.show()

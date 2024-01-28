@@ -1,6 +1,7 @@
 # Import relevant packages
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import seaborn as sns
 import numpy as np
 
@@ -36,10 +37,11 @@ if __name__ == '__main__':
             raise "method is not NOVA, NANO or RCS."
 
     # Plotting parameters:
-    color_type_dict = {"RCS":plt.cm.get_cmap('Greens'),
-                       "NOVA":plt.cm.get_cmap('Greys'),
-                       "NOVA-ecco":plt.cm.get_cmap('bone'),
-                       "NANO": plt.cm.get_cmap('Blues')}
+    color_type_dict = {"RCS":plt.colormaps['Greens'],
+                       "NOVA":plt.colormaps['Greys'],
+                       "NOVA-ecco":plt.colormaps['bone'],
+                       "NANO": plt.colormaps['Blues']
+                       }
     marker_type_dict =  {"HC01":"o","HC02":"s", "HC03":"^"}
 
     # Load data
@@ -47,21 +49,24 @@ if __name__ == '__main__':
     names = list(df2['sample'].unique())*4
     methods = list(np.repeat(list(df2['method'].unique()),3))
     # Plot
-    plt.subplots(figsize=(7.93, 3.12))
+    fig, ax = plt.subplots(figsize=(8, 5))
     i = 0
     for name, method in zip(names, methods):
         i += 1
         error_rate_by_chrom = df2[(df2['sample'] == name) & (df2['method'] == method)].sort_values(by='chromosome')['error_rate_in_1M_reads'].values
         marker_type = marker_type_dict[name]
         color_type = color_type_dict[method]
-        plt.plot([str(i) for i in range(1,23)],
+
+        # 2nd plot
+        ax.plot([str(i) for i in range(1,23)],
                  error_rate_by_chrom,
                  marker=marker_type,
                  linestyle="None",
                  label= f"{name}_{method}",
-                 color = color_type((i+3)*10)
+                 color = color_type((i+3)*10),
                 )
-    plt.legend(bbox_to_anchor= (1,1))
+    ax.legend(bbox_to_anchor= (1,1))
+    plt.yticks(np.arange(0.0000, 0.0125, 0.001))
     plt.ylabel("SNV Error rate")
     plt.xlabel("Chromosome")
     plt.tight_layout()

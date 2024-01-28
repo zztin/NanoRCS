@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # Set font size, style
 plt.rcParams['pdf.fonttype'] = 42
@@ -25,7 +26,7 @@ if __name__ == '__main__':
     # Import dataframe
     df = pd.read_csv("./source_data/Fig2A.csv", index_col=[0,1])
     # Plotting snv error rate per sequencing and analysis method
-    p1, ax = plt.subplots(figsize=(5, 4))
+    p1, ax = plt.subplots(figsize=(5*1.1, 4*1.1))
     p1 = sns.barplot(data=df,
                      orient="h",
                      x='SNV error rate',
@@ -36,7 +37,9 @@ if __name__ == '__main__':
     ax.set_ylabel('')
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
-    ax.spines['bottom'].set_visible(False)
+    plt.xticks(np.arange(0.000, 0.009, 0.001))
+    ax.tick_params(axis='x', which='major', length=4, grid_color='grey')
+    plt.grid(True)
     plt.tight_layout()
     plt.savefig("../output/output_figures/Fig2A.pdf")
     plt.show()
