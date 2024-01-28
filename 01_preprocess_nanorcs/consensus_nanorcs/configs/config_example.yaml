@@ -1,0 +1,10 @@
+reference:
+  "/path/to/ref/genome/hs37d5.fasta"
+backbones:
+  "/path/to/data/backbones.fasta"
+input_dir:
+  "/path/to/input/bam"
+out_dir:
+  "./output/processed_data/NanoRCS/consensus_filtered"
+sample_tsv:
+  "/path/to/samplesheet_example.csv"

@@ -18,9 +18,8 @@ for contig in $contig_list; do
     # Extract reads for the current contig using samtools view
     samtools view -b "$input_bam" "$contig" > "$temp_bam"
     # Execute the Python script on the temporary BAM file
-    python get_first_align_nanorcs.py -i "$temp_bam" -o "${out_folder}/output_${contig}.bam"
+    python first_align_nanorcs.py -i "$temp_bam" -o "${out_folder}/output_${contig}.bam"
     # Parallel example with slurm
-
     #sbatch -J ${contig}_first_alignment -o ./${contig}_first_alignment.slurm.out -e ./${contig}_first_alignment.slurm.err --time=24:00:00 --mem=128G 01_get_first_alignment_wrapper.sh ${temp_bam} ${out_folder}/output_${contig}.bam
 done
 

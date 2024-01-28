@@ -1,0 +1,12 @@
+channels: 
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python
+  - pysam
+  - bedtools
+  - cutadapt=4.1
+  - tqdm
+  - samtools
+  - bwa
