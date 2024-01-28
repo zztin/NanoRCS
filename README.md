@@ -7,9 +7,9 @@ Table of Content
 ==============
 * [Introduction](#Introduction)
 * [Repository content](#Repository-content)
-  * [Process nanopore data](##Pre-processing)
-  * [cfDNA Analyses](##cfDNA-Analyses)
-  * [Generate figures](##Generate-figures)
+  * [Process nanopore data](#Pre-processing)
+  * [cfDNA Analyses](#cfDNA-Analyses)
+  * [Generate figures](#Generate-figures)
 * [Citation](#Citation)
 * [License](#license)
 * [Credit](#Credit)
