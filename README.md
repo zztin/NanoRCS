@@ -1,7 +1,5 @@
 # NanoRCS
-NanoRCS (pronounced "Nano rocks"). 
-
-Related publication: [Nanopore-based consensus sequencing enables accurate multimodal cell-free tumor DNA profiling]().
+NanoRCS (pronounced "Nano rocks") is a nanopore-based genome-wide Rolling Circle Amplification (RCA)-enhanced Consensus Sequencing method for cfDNA sequencing. Related publication: [Nanopore-based consensus sequencing enables accurate multimodal cell-free tumor DNA profiling](https://doi.org/10.1101/2024.02.16.580684).
 
 Table of Content
 ==============
@@ -17,13 +15,15 @@ Table of Content
 
 
 # Introduction
-NanoRCS (pronounced "Nano rocks") is an nanopore-based genome-wide Rolling Circle Amplification (RCA)-enhanced Consensus Sequencing method for cfDNA sequencing. 
+NanoRCS (pronounced "Nano rocks") is a nanopore-based genome-wide Rolling Circle Amplification (RCA)-enhanced Consensus Sequencing method for cfDNA sequencing. 
 
-The repository was written by Li-Ting Chen and Myrthe Jager from [De Ridder lab](https://www.deridderlab.nl/) at Center of Molecular Medicine, University Medical Center Utrecht, the Netherlands. 
+The repository was written by Li-Ting Chen and Myrthe Jager from [De Ridder lab](https://www.deridderlab.nl/) at the Center of Molecular Medicine, University Medical Center Utrecht, the Netherlands. 
 
-You can find analysis pipelines and scripts for figures generating related to paper title: [Nanopore-based consensus sequencing enables accurate multimodal cell-free tumor DNA profiling]().
+You can find analysis pipelines and scripts for figures generating related to paper title: [Nanopore-based consensus sequencing enables accurate multimodal cell-free tumor DNA profiling](https://doi.org/10.1101/2024.02.16.580684).
 
 Different parts of analyses are organized in different folders on this top folder. A README.md file could be found in each folder concerning relevant analyses. See [Repository content](#Repository content) below for content of each folder. 
+
+The repository is still under construction for section 04-07. Please contact the authors for more details.
 
 # Repository content
 ## Pre-processing
@@ -63,14 +63,8 @@ All scripts for generating figures are provided per figure. A source data file c
 ## output 
 Default path for example output files. The files in this folder is not version tracked with git. 
 
-# Citation
-
-# License
-
-# Credit
-
 # Getting help
 
-
+Please contact the authors and create an issue to get help.
 
 
