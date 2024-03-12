@@ -1,3 +1,6 @@
+###################
+# This plotting script is part of the snakemake pipeline in 04_snv_tumor_informed as scripts/plot_raw_snv.py
+###################
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,6 +8,9 @@ import pysam
 import seaborn as sns
 import argparse
 
+plt.rcParams['pdf.fonttype'] = 42
+plt.rcParams['mathtext.rm'] = 'Arial'
+plt.rcParams['font.family'] = ['Arial']
 
 def plot_lollipop_tf(samples, tfs, tfs_err, figsize=[3,3], linewidth=4, markersize=8):
     fig, axes = plt.subplots(figsize = figsize)
@@ -80,7 +86,7 @@ def plot_raw_snv_count(df_combined_OVCA, out_path, samples, figsize=(36, 5), plo
         axs[m].vlines(indexes['REF'][n], ymin=0.2, ymax=0.8, color=color_REF)  # linewidth=1.5
         axs[m].vlines(indexes['ALT'][n], ymin=0.2, ymax=0.8, color=color_ALT)  # linewidth=1.5
         axs[m].vlines(indexes['ERR'][n], ymin=0.2, ymax=0.8, color=color_ERR)  # linewidth=1.5
-        axs[m].set_yticks(np.arange(-1, 2, 1.5), labels=["", f""])
+        axs[m].set_yticks(np.arange(-1, 2, 1.5), labels=["", f"{sample}"])
         axs[m].set_ylim(0, 1)
 
     axs[m].set_xticks(xtick_positions, labels=xtick_labels, rotation=90)
@@ -152,7 +158,7 @@ def plot_raw_snv_count(df_combined_OVCA, out_path, samples, figsize=(36, 5), plo
     # plt.show()
 
 
-def plot_all_vcf(all_variants):
+def plot_all_vcf(all_variants,path):
     # set variant_id as index
     # all_variants.index = all_variants['variant_id']
     all_variants = all_variants[all_variants['CHROM'] != 'X']
@@ -162,8 +168,8 @@ def plot_all_vcf(all_variants):
     all_variants = all_variants.drop_duplicates(keep='first')
     ax = sns.histplot(x = 'ALT_freq', data = all_variants, multiple="stack", color='darkred' )
     ax.set_title(f"{sample_name.split('_')[0]} All variants ALT allele frequency")
-    plt.savefig(f"/Users/liting/01_data/GCT/somaticOverlap_output/figures_nb/{sample_name.split('_')[0]}_ALT_allele_frequency-all_variants.png",dpi = 150)
-    plt.savefig(f"/Users/liting/01_data/GCT/somaticOverlap_output/figures_nb/{sample_name.split('_')[0]}_ALT_allele_frequency-all_variants.pdf")
+    plt.savefig(f"{path}/{sample_name.split('_')[0]}_ALT_allele_frequency-all_variants.png",dpi = 150)
+    plt.savefig(f"{path}/{sample_name.split('_')[0]}_ALT_allele_frequency-all_variants.pdf")
     # plt.show()
 
 
@@ -239,7 +245,7 @@ def create_snv_table(sample_names, paths):
     return df_combined_OVCA, with_filter_60
 
 
-def plot_all_observed_vaf(sample_names, paths):
+def plot_all_observed_vaf(sample_names, paths, fig_path):
     sns.set_palette('Paired')
     # Store
     REF_name = sample_name.split('_')[0]
@@ -265,20 +271,21 @@ def plot_all_observed_vaf(sample_names, paths):
         # sns.histplot(data = x, x = 'vaf', hue = 'obs')
         ax.set_title(f"{sample}, ALT allele frequency")
         plt.savefig(
-            f"/Users/liting/01_data/GCT/somaticOverlap_output/figures_nb/{sample}_{QUAL}_ALT_allele_frequency_adjusted.png",
+            f"{fig_path}/{sample}_{QUAL}_ALT_allele_frequency_adjusted.png",
             dpi=150)
         plt.savefig(
-            f"/Users/liting/01_data/GCT/somaticOverlap_output/figures_nb/{sample}_{QUAL}_ALT_allele_frequency_adjusted.pdf")
+            f"{fig_path}/{sample}_{QUAL}_ALT_allele_frequency_adjusted.pdf")
         # plt.show()
 
 
-def plot_all_vaf_in_tumor_tissue(all_variants, sample_name, outpath):
+def plot_all_vaf_in_tumor_tissue(all_variants, sample_name, path):
     ax = sns.histplot(x='ALT_freq', data=all_variants, multiple="stack",color='darkred' )
-    ax.set_title(f"{sample_name} All variants ALT allele frequency")
-    plt.savefig(f"{outpath}/{sample_name}_all_vaf_in_tumor.pdf",
+    ax.set_title(f"{sample_name.split('_')[0]} All variants ALT allele frequency")
+    plt.savefig(
+        f"{path}/{sample_name.split('_')[0]}_ALT_allele_frequency-all_variants.png",
         dpi=150)
-    plt.savefig(f"{outpath}/{sample_name}_all_vaf_in_tumor.png",
-        dpi=150)
+    plt.savefig(
+        f"{path}/{sample_name.split('_')[0]}_ALT_allele_frequency-all_variants.pdf")
     # plt.show()
 
 
@@ -344,13 +351,13 @@ if __name__ == '__main__':
     sample_name = sample_names[0]
 
     # Load pickle file for each samples included for plotting
-    print("With filtering on mapping quality = ? (depending on the config file")
+    print("With filtering on mapping quality = ? (Depending on the config file")
     df_combined_OVCA, with_filter_60 = create_snv_table(sample_names, paths)
     # Load all molecules and merge with SNV detected molecules
     all_variants = pd.read_pickle(args.all_variant_vcf_pickle_path)
     # plot_all_vcf(all_variants)
     merge_df_with_all_variants(all_variants, df_combined_OVCA, sample_name)
     plot_all_vaf_in_tumor_tissue(all_variants, sample_name, args.path)
+
+    # plot_all_observed_vaf((sample_names, paths, fig_path)
     plot_subset_df(df_combined_OVCA, args.path_figure, figsize = (26, 9), method = 'min_count')
-
-

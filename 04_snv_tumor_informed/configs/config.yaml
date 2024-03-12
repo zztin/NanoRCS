@@ -1,7 +1,7 @@
 # Config file for Snakemake workflow
 
 # Define the output directory
-out_dir: "/path/to/folder"
+out_dir: "/path/to/NanoRCS/output/processed_data/04_snv_tumor_informed/"
 
 # Rule specific params:
 min_qual: [40]
@@ -21,15 +21,15 @@ samples_bam:
 
 
 samples_bam_repeated:
-  GCT02-B4: "/path/to/samples/with/multiple/timepoint/GCT02-B4.bam"
-  GCT02-B6: "/path/to/sample" 
-  GCT02-B9: "/path/to/sample"
-  GCT02-B10:"/path/to/sample"
-  GCT02-B11:"/path/to/sample"
-  10PEROVCA01HC02: "/path/to/sample/10PEROVCA01HC02.bam"
-  2PEROVCA01HC02: "/path/to/sample"
-  1PEROVCA01HC02: "/path/to/sample"  
-  05PEROVCA01HC02: "/path/to/sample"
+  GCT02-B4: "/path/to/samples/with/same/vcf/GCT02-B4.bam"
+  GCT02-B6: "/path/to/sample/with/same/vcf/GCT02-B6.bam"
+  GCT02-B9: "/path/to/sample/with/same/vcf/GCT02-B9.bam"
+  GCT02-B10: "/path/to/sample/with/same/vcf/GCT02-B10.bam"
+  GCT02-B11: "/path/to/sample/with/same/vcf/GCT02-B11.bam"
+  10PEROVCA01HC02: "/path/to/sample/with/same/vcf/10PEROVCA01HC02.bam"
+  2PEROVCA01HC02: "/path/to/sample/with/same/vcf/2PEROVCA01HC02.bam"
+  1PEROVCA01HC02: "/path/to/sample/with/same/vcf/1PEROVCA01HC02.bam"
+  05PEROVCA01HC02: "/path/to/sample/with/same/vcf/05PEROVCA01HC02.bam"
 
 vcf_repeated:
   GCT02-B4: "/path/to/filtered_variants/GCT02_filtered_somatic.vcf.gz"
