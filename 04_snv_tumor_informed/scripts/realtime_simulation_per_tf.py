@@ -149,4 +149,26 @@ if __name__ == '__main__':
     plt.show()
 
 
+    ## 6. Get the earliest SNV timepoint
+    import pandas as pd
+    import numpy as np
+
+    # Filter columns that start with "Tumor SNV detected at"
+    tumor_snv_cols = df_throughput.loc[:, df_throughput.columns.str.contains('Tumor SNV detected at')]
+
+    # Replace 0 with NaN
+    tumor_snv_cols = tumor_snv_cols.replace(0, np.nan)
+
+    # Find the index of the first non-zero value (now non-NaN) in each column
+    first_non_zero_idx = tumor_snv_cols.idxmax()
+
+    # Map these indices to the corresponding experiment times
+    for key, value in first_non_zero_idx.items():
+        print(key)
+        if np.isnan(value):
+            print(f'No tumor SNV discovered in maximal timespan in {key}')
+        else:
+            print(f'Earliest timepoint with {key}')
+            first_non_zero_times = df_throughput['Experiment Time (minutes)'].iloc[int(value)]
+            print(first_non_zero_times)
 
