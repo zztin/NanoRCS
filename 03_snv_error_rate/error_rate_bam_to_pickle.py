@@ -97,6 +97,8 @@ if __name__ == '__main__':
     for file in os.listdir(filepath):
         if os.path.isdir(file):
             continue
+        elif not file.endswith('bam'):
+            continue
         else:
             # Create error rate per read dataframe
             filename = os.path.join(filepath, file)
