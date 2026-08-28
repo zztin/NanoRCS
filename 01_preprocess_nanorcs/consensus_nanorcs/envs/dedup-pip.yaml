@@ -8,7 +8,7 @@ dependencies:
   - pip
   - pip:
       - pysam
-      - numpy
+      - numpy=1.17
       - pandas
       - pyBigWig
       - colorama
